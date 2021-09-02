@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments :: head">
+
+<body>
+<nav th:replace="fragments :: navigation"></nav>
+
+<div class="container-fluid">
+    <i class="fas fa-search fa-2x"></i>
+    <br>
+    <div class="row">
+        <div class="col-md-3">
+            <input type="text" class="form-control" placeholder="username" aria-label="username">
+        </div>
+        <div class="col-md-3">
+            <input type="text" class="form-control" placeholder="email" aria-label="email">
+        </div>
+        <div class="col-md-3">
+            <input type="text" class="form-control" placeholder="phonenumbers" aria-label="phonenumbers">
+        </div>
+        <div class="col-md-3">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </div>
+</div>
+
+<br>
+
+<div class="container-fluid">
+
+    <table class="table table-success table-striped">
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+
+        <tr th:each="user : ${listUsers}">
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.username}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.phone}"></td>
+
+                <td>
+                    <a class="btn btn-danger" th:href="@{'/users/delete/' + ${user.id}}" >Delete</a>
+                    <a class="btn btn-warning" th:href="@{'users/edit/' + ${user.id}}" >Edit</a>
+                </td>
+
+
+    </table>
+</div>
+
+
+</body>
+</html>
